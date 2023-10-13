@@ -41,4 +41,4 @@ jobs:
           app-name: 'weather-assistant'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B215128859B74457929D8F37D0C70BF3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A724DAD595C4E0BA2CF416AA40C2D66 }}
