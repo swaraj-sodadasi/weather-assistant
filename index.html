@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Assistant</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script defer src="./index.js"></script>
+</head>
+<body>
+    <button type="button" id="button_id">Search</button><br>
+    <p id="gen_output"></p>
+    <input type="hidden" placeholder="location" id="generating_text_id" autocomplete="off">
+    <p class="output_id">
+        <p id="location_id_0"><b>Location<b>
+        <p span id="location_id"></p>
+        <p id="latitude_id_0"><b>Latitude<b>
+        <p span id="latitude_id"></p>
+        <p id="longitude_id_0"><b>Longitude<b>
+        <p id="longitude_id"></p>
+        <p id="state_id_0"><b>State<b>
+        <p id="state_id"></p>
+        <p id="country_id_0"><b>Country<b>
+        <p id="country_id"></p>
+        <p id="population_id_0"><b>Population<b>
+        <p id="population_id"></p>
+        <p id="timezone_id_0"><b>TimeZone<b>
+        <p id="timezone_id"></p>
+        <p id="evapotranspiration_id_0"><b>Evapotranspiration<b>
+        <p id="evapotranspiration_id"></p>
+        <p id="precipitation_sum_id_0"><b>Precipitation Sum<b>
+        <p id="precipitation_sum_id"></p>
+        <p id="rain_sum_id_0"><b>Rainfall Sum<b>
+        <p id="rain_sum_id"></p>
+        <p id="snow_sum_id_0"><b>Snowfall Sum<b>
+        <p id="snow_sum_id"></p>
+        <p id="sunrise_id_0"><b>Sunrise<b>
+        <p id="sunrise_id"></p>
+        <p id="sunset_id_0"><b>Sunset<b>
+        <p id="sunset_id"></p>
+        <p id="temperature_id_0"><b>Temperature<b>
+        <p id="temperature_id"></p>
+        <p id="time_id_0"><b>Time<b>
+        <p id="time_id"></p>
+        <p id="uv_index_id_0"><b>UV Index<b>
+        <p id="uv_index_id"></p>
+        <p id="wind_dir_id_0"><b>Wind Direction<b>
+        <p id="wind_dir_id"></p>
+        <p id="wind_gusts_id_0"><b>Wind Gusts<b>
+        <p id="wind_gusts_id"></p>
+        <p id="wind_speed_id_0"><b>Wind Speed<b>
+        <p id="wind_speed_id"></p>
+    </p>
+
+    <div id="map">
+        
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</body>
+</html>

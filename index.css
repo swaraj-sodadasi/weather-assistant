@@ -1,0 +1,485 @@
+*{
+    margin:0px;
+    padding:0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family:'Montserrat';
+    font-size: 20px;
+    background-color: azure;
+    color:black;
+}
+
+#button_id{
+    margin:30px 10px 50px 50px;
+    width: 100px;
+    height:30px;
+    border-radius: 20px;
+    border-color: black;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    padding: auto;
+    justify-content: center;
+}
+  
+#gen_output{
+    margin:40px 10px 50px 50px;
+    width: 300px;
+    height:25px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#generating_text_id{
+    margin:50px 10px 50px 50px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+.output_id{
+    margin:80px 10px 50px 50px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#location_id_0{
+    margin:90px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#location_id{
+    margin:90px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+    text-transform: capitalize;
+}
+
+
+#latitude_id_0{
+    margin:120px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+
+#latitude_id{
+    margin:120px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+    text-transform: capitalize;
+}
+
+#longitude_id_0{
+    margin:150px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#longitude_id{
+    margin:150px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#state_id_0{
+    margin:180px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#state_id{
+    margin:180px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#country_id_0{
+    margin:210px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#country_id{
+    margin:210px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#population_id_0{
+    margin:240px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+
+#population_id{
+    margin:240px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#timezone_id_0{
+    margin:270px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+
+#timezone_id{
+    margin:270px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#evapotranspiration_id_0{
+    margin:300px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#evapotranspiration_id{
+    margin:300px 130px 50px 250px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#precipitation_sum_id_0{
+    margin:330px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#precipitation_sum_id{
+    margin:330px 130px 50px 250px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#rain_sum_id_0{
+    margin:360px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#rain_sum_id{
+    margin:360px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#snow_sum_id_0{
+    margin:390px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#snow_sum_id{
+    margin:390px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#sunrise_id_0{
+    margin:410px 10px 50px 50px;
+    width: 300px;
+    height:30px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#sunrise_id{
+    margin:410px 100px 50px 200px;
+    width: 1200px;
+    height:30px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#sunset_id_0{
+    margin:450px 10px 50px 50px;
+    width: 300px;
+    height:20px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#sunset_id{
+    margin:450px 100px 50px 200px;
+    width: 1200px;
+    height:30px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#temperature_id_0{
+    margin:500px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#temperature_id{
+    margin:500px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#time_id_0{
+    margin:530px 10px 50px 50px;
+    width: 1200px;
+    height:30px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#time_id{
+    margin:530px 100px 50px 200px;
+    width: 1200px;
+    height:30px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#uv_index_id_0{
+    margin:560px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#uv_index_id{
+    margin:560px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_dir_id_0{
+    margin:590px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_dir_id{
+    margin:590px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_gusts_id_0{
+    margin:610px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_gusts_id{
+    margin:610px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_speed_id_0{
+    margin:640px 10px 50px 50px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+#wind_speed_id{
+    margin:640px 100px 50px 200px;
+    width: 300px;
+    height:10px;
+    font-size: 20px;
+    display:flex;
+    position:absolute;
+    text-align: auto;
+    padding:auto;
+}
+
+
+
+#map {
+    height: 300px;
+    width: 70%;
+    margin:660px 20px 200px 200px;
+}
+
