@@ -1,9 +1,8 @@
-name: Deploy Weather Assistant Web App & Documentation
+name: Deploy Doxygen Documentation
 
 on:
   push:
     branches:
-      - main
       - master # Triggers execution instantly whenever you push code changes to main/master branch
 
 permissions:
@@ -35,11 +34,11 @@ jobs:
       - name: Setup GitHub Pages Environment
         uses: actions/configure-pages@v4
 
-      - name: Upload Web App & Doxygen Artifacts
+      - name: Upload Generate HTML Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          # Serves root index.html as the main website homepage
-          path: '.'
+          # Targets the exact, unnested folder path containing your fresh index.html file
+          path: 'docs/html'
 
       - name: Deploy to GitHub Pages Live
         id: deployment
