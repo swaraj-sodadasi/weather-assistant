@@ -26,7 +26,7 @@ Traditional web-based weather tools often suffer from key usability and technica
 
 ```text
 weather-assistant/
-├── index.html               # Main HTML5 application shell & structured dashboard layout
+├── index.html               # Main HTML5 application shell & deployment homepage
 ├── index.css                # Custom CSS3 styling system (Glassmorphism, dark theme, responsive grid)
 ├── weather-information.js   # Open-Meteo API fetcher, unit handling, and 10-day carousel engine
 ├── map-information.js       # Leaflet.js map controller & unblockable Open-Meteo geocoding handler
@@ -89,19 +89,19 @@ npm run docs
 
 This compiles the JSDoc/Doxygen comments in `weather-information.js`, `map-information.js`, and `speech-tasks.js` into `./docs/html/index.html`.
 
-### Viewing Generated Docs
+### Viewing Generated Docs Locally
 Open `./docs/html/index.html` in any browser to inspect the interactive API documentation, function call trees, and module references.
 
 ---
 
-## 🔗 5. Project Resources & Documentation
+## 🔗 5. Project Resources & Live Deployments
 
-### Live Documentation & External References
-- **Open-Meteo API Documentation**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
+- **🌐 Live Web Application (index.html)**: [https://swaraj-sodadasi.github.io/weather-assistant](https://swaraj-sodadasi.github.io/weather-assistant)
+- **📚 Interactive Doxygen Documentation**: [https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html](https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html)
+- **⚙️ CI/CD Deployment Workflow**: [GitHub Actions Workflow Status](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)
+- **Open-Meteo API Reference**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
 - **Leaflet API Reference**: [https://leafletjs.com/reference.html](https://leafletjs.com/reference.html)
-- **Web Speech API Documentation (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-- **Interactive API Reference**: [Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant)
-- **Cloud Deployment Status**: [GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)
+- **Web Speech API (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 
 ---
 
