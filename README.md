@@ -18,6 +18,7 @@ Traditional web-based weather tools often suffer from key usability and technica
 2. **Universal Multi-Modal Search**: Supports Voice Recognition, Manual Text Input, and GPS Auto-Location with graceful cross-browser fallback support (Firefox/Safari ready).
 3. **Interactive Carousels**: 24-hour daily timeline slides and 10-day forecast overview tables with 12-hour clock time formatting (`hh:mm AM/PM`).
 4. **Interactive Leaflet Mapping**: Real-time geolocation pin rendering and coordinate mapping powered by Open-Meteo & OpenStreetMap.
+5. **Automated Doxygen Documentation**: Full JSDoc/Doxygen documentation engine configured via npm scripts.
 
 ---
 
@@ -30,6 +31,10 @@ weather-assistant/
 ├── weather-information.js   # Open-Meteo API fetcher, unit handling, and 10-day carousel engine
 ├── map-information.js       # Leaflet.js map controller & unblockable Open-Meteo geocoding handler
 ├── speech-tasks.js          # Web Speech Recognition, Speech Synthesis, & cross-browser input handlers
+├── Doxyfile                 # Doxygen automated documentation generator configuration
+├── package.json             # NPM package manager configuration & build scripts
+├── docs/                    # Generated Doxygen HTML documentation output folder
+│   └── html/index.html      # Interactive Doxygen API reference homepage
 ├── README.md                # Comprehensive project documentation & usage guide
 └── LICENSE                  # Open-source project license
 ```
@@ -44,6 +49,14 @@ weather-assistant/
 ---
 
 ## 🛠️ 3. Pre-Requisites & Dependencies
+
+### Package Manager Setup
+Ensure Node.js and NPM are installed on your environment.
+
+```bash
+# Install development dependencies
+npm install
+```
 
 ### Hardware & Operating System Requirements
 - Any modern desktop or mobile browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Apple Safari).
@@ -61,7 +74,26 @@ weather-assistant/
 
 ---
 
-## 🔗 4. Project Resources & Documentation
+## 📚 4. Automated Doxygen Documentation
+
+Documentation for **Weather Assistant** is fully automated using Doxygen with JavaScript extension mapping.
+
+### Generating Documentation via NPM
+Run the following npm command in your terminal to build or refresh Doxygen HTML docs:
+
+```bash
+# Build Doxygen documentation
+npm run doc
+```
+
+This compiles the JSDoc/Doxygen comments in `weather-information.js`, `map-information.js`, and `speech-tasks.js` into `./docs/html/index.html`.
+
+### Viewing Generated Docs
+Open `./docs/html/index.html` in any browser to inspect the interactive API documentation, function call trees, and module references.
+
+---
+
+## 🔗 5. Project Resources & Documentation
 
 ### Live Documentation & External References
 - **Open-Meteo API Documentation**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
@@ -113,12 +145,9 @@ jobs:
 
 ---
 
-## 🔮 5. Future Scope & Roadmap
+## 🔮 6. Future Scope & Roadmap
 
 1. **PWA & Offline Support**: Implement a Progressive Web App (PWA) Service Worker with local storage caching for offline weather viewing.
 2. **AI Weather Insights**: Integrate LLM natural language summaries (e.g. *"Heavy rain expected at 4 PM, bring an umbrella!"*).
 3. **Severe Weather Push Notifications**: Add Web Push API alerts for UV spikes, sudden wind gusts, or severe storm warnings.
 4. **Multi-Language Voice Support**: Expand voice recognition and speech synthesis across global languages (Spanish, Hindi, French, German, Japanese).
-
----
-
