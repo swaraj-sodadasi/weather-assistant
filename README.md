@@ -34,6 +34,7 @@ weather-assistant/
 ├── Doxyfile                 # Doxygen automated documentation generator configuration
 ├── package.json             # NPM package manager configuration & build scripts
 ├── docs/                    # Generated Doxygen HTML documentation output folder
+│   ├── Doxyfile             # Doxygen configuration for docs output
 │   └── html/index.html      # Interactive Doxygen API reference homepage
 ├── README.md                # Comprehensive project documentation & usage guide
 └── LICENSE                  # Open-source project license
@@ -83,7 +84,7 @@ Run the following npm command in your terminal to build or refresh Doxygen HTML 
 
 ```bash
 # Build Doxygen documentation
-npm run doc
+npm run docs
 ```
 
 This compiles the JSDoc/Doxygen comments in `weather-information.js`, `map-information.js`, and `speech-tasks.js` into `./docs/html/index.html`.
@@ -99,9 +100,10 @@ Open `./docs/html/index.html` in any browser to inspect the interactive API docu
 - **Open-Meteo API Documentation**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
 - **Leaflet API Reference**: [https://leafletjs.com/reference.html](https://leafletjs.com/reference.html)
 - **Web Speech API Documentation (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-- **Read the interactive code layouts**: [Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant)**
-- **Monitor the cloud deployment status**: [GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
+- **Interactive API Reference**: [Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant)
+- **Cloud Deployment Status**: [GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)
 
+---
 
 ## 🔮 6. Future Scope & Roadmap
 
