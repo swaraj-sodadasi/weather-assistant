@@ -1,19 +1,29 @@
 /**
- * map-information.js
- * Production-ready Leaflet map controller designed for 100% cross-browser compatibility (Firefox, Chrome, Safari, Edge).
+ * @file map-information.js
+ * @brief Leaflet map renderer and location geocoding controller.
+ * @details Manages Leaflet map state, pin markers, popups, Open-Meteo unblockable geocoding lookup,
+ * and cross-browser OpenStreetMap tile layers.
  */
 
 (function () {
   'use strict';
 
+  /**
+   * Active Leaflet map instance object.
+   */
   let mapInstance = null;
+
+  /**
+   * Active map pin marker object.
+   */
   let currentMarker = null;
 
   /**
-   * Initializes the Leaflet map container safely.
-   * @param {number} defaultLat - Center latitude.
-   * @param {number} defaultLng - Center longitude.
-   * @param {number} zoomLevel - Zoom level.
+   * @brief Initializes the Leaflet map container safely.
+   * @param defaultLat Default center latitude (default: 20.5937).
+   * @param defaultLng Default center longitude (default: 78.9629).
+   * @param zoomLevel Default map zoom level (default: 5).
+   * @returns Leaflet map instance or null on failure.
    */
   function initMap(defaultLat = 20.5937, defaultLng = 78.9629, zoomLevel = 5) {
     const mapElement = document.getElementById('map');
@@ -32,21 +42,18 @@
     }
 
     try {
-      // Create Leaflet map instance
       mapInstance = L.map('map', {
         zoomControl: true,
         attributionControl: true,
         scrollWheelZoom: true
       }).setView([defaultLat, defaultLng], zoomLevel);
 
-      // Official HTTPS tile layer with crossOrigin enabled for Firefox/Safari security
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
         crossOrigin: true
       }).addTo(mapInstance);
 
-      // Auto resize map when window size changes
       window.addEventListener('resize', () => {
         if (mapInstance) mapInstance.invalidateSize();
       });
@@ -59,11 +66,11 @@
   }
 
   /**
-   * Updates map view and marker using explicit latitude & longitude coordinates.
-   * @param {number} lat - Latitude coordinate.
-   * @param {number} lng - Longitude coordinate.
-   * @param {string} label - Location label popup text.
-   * @param {number} zoomLevel - Zoom level.
+   * @brief Updates map view and marker using explicit latitude & longitude coordinates.
+   * @param lat Latitude coordinate.
+   * @param lng Longitude coordinate.
+   * @param label Location label popup text.
+   * @param zoomLevel Target map zoom level (default: 12).
    */
   function renderMap(lat, lng, label = 'Selected Location', zoomLevel = 12) {
     const map = initMap(lat, lng, zoomLevel);
@@ -78,22 +85,18 @@
         return;
       }
 
-      // Remove existing marker if present
       if (currentMarker) {
         map.removeLayer(currentMarker);
       }
 
-      // Create new marker with popup tooltip
       currentMarker = L.marker([latitude, longitude]).addTo(map);
       currentMarker.bindPopup(`<b>${label}</b><br>Lat: ${latitude.toFixed(4)}, Lon: ${longitude.toFixed(4)}`).openPopup();
 
-      // Pan and set zoom
       map.setView([latitude, longitude], zoomLevel, {
         animate: true,
         duration: 0.8
       });
 
-      // Ensure map dimensions re-calculate properly
       setTimeout(() => {
         if (mapInstance) mapInstance.invalidateSize();
       }, 200);
@@ -103,8 +106,8 @@
   }
 
   /**
-   * Geocodes a location query using Open-Meteo Geocoding API (never blocked by Firefox/Safari).
-   * @param {string} locationName - Name of location/city.
+   * @brief Geocodes a location query via Open-Meteo Geocoding API and updates map coordinates.
+   * @param locationName Name of target location/city.
    */
   async function renderMapByLocation(locationName) {
     if (!locationName || !locationName.trim()) return;
@@ -135,12 +138,10 @@
     }
   }
 
-  // Initialize map when DOM is fully loaded
   document.addEventListener('DOMContentLoaded', () => {
     initMap();
   });
 
-  // Expose functions globally
   window.renderMap = renderMap;
   window.renderMapByLocation = renderMapByLocation;
 })();
