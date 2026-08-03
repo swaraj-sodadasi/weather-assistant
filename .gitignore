@@ -22,11 +22,7 @@ ENV/
 
 # Generated Documentation (Doxygen / JSDoc outputs)
 docs/html
-html/
-latex/
-rtf/
-xml/
-*.tag
+docs/latex
 Doxygen.log
 
 # IDE & Editor Files
