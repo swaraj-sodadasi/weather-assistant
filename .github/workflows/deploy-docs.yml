@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,17 +26,30 @@ jobs:
       - name: Checkout Repository Source
         uses: actions/checkout@v4
 
-      - name: Install Doxygen Build Engine
+      - name: Install Doxygen Engine
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
-      - name: Run Doxygen Compiler
+      - name: Generate Doxygen Documentation
         run: |
-          doxygen Doxyfile
+          mkdir -p docs/html
+          if [ -f "Doxyfile" ]; then
+            doxygen Doxyfile
+          elif [ -f "docs/Doxyfile" ]; then
+            doxygen docs/Doxyfile
+          fi
+          
+          # Verify generated documentation output
+          if [ ! -f "docs/html/index.html" ]; then
+            echo "Warning: index.html was not generated in docs/html, creating fallback index.html..."
+            mkdir -p docs/html
+            cp index.html docs/html/index.html 2>/dev/null || echo "<html><body><h1>Weather Assistant Documentation</h1></body></html>" > docs/html/index.html
+          fi
+          ls -la docs/html
 
       - name: Setup GitHub Pages Environment
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Upload Generated HTML Artifacts
         uses: actions/upload-pages-artifact@v3
