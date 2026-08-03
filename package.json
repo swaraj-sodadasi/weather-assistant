@@ -4,8 +4,8 @@
   "description": "A modern, voice-enabled weather intelligence web application built with vanilla JavaScript, HTML5, CSS3 Glassmorphism, Open-Meteo REST APIs, Leaflet.js, and Web Speech APIs.",
   "main": "weather-information.js",
   "scripts": {
-    "doc": "doxygen Doxyfile",
-    "docs": "doxygen Doxyfile"
+    "doc": "doxygen docs/Doxyfile",
+    "docs": "doxygen docs/Doxyfile"
   },
   "repository": {
     "type": "git",

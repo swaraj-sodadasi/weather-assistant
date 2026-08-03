@@ -18,7 +18,7 @@ Traditional web-based weather tools often suffer from key usability and technica
 2. **Universal Multi-Modal Search**: Supports Voice Recognition, Manual Text Input, and GPS Auto-Location with graceful cross-browser fallback support (Firefox/Safari ready).
 3. **Interactive Carousels**: 24-hour daily timeline slides and 10-day forecast overview tables with 12-hour clock time formatting (`hh:mm AM/PM`).
 4. **Interactive Leaflet Mapping**: Real-time geolocation pin rendering and coordinate mapping powered by Open-Meteo & OpenStreetMap.
-5. **Automated Doxygen Documentation**: Full JSDoc/Doxygen documentation engine configured via npm scripts.
+5. **Automated Doxygen Documentation**: Full JSDoc/Doxygen documentation engine configured via npm scripts and GitHub Actions.
 
 ---
 
@@ -26,17 +26,19 @@ Traditional web-based weather tools often suffer from key usability and technica
 
 ```text
 weather-assistant/
-├── index.html               # Main HTML5 application shell & deployment homepage
-├── index.css                # Custom CSS3 styling system (Glassmorphism, dark theme, responsive grid)
-├── weather-information.js   # Open-Meteo API fetcher, unit handling, and 10-day carousel engine
-├── map-information.js       # Leaflet.js map controller & unblockable Open-Meteo geocoding handler
-├── speech-tasks.js          # Web Speech Recognition, Speech Synthesis, & cross-browser input handlers
-├── Doxyfile                 # Doxygen automated documentation generator configuration
-├── package.json             # NPM package manager configuration & build scripts
-├── docs/                    # Generated Doxygen HTML documentation output folder
-│   ├── Doxyfile             # Doxygen configuration for docs output
-│   └── html/index.html      # Interactive Doxygen API reference homepage
-├── README.md                # Comprehensive project documentation & usage guide
+├── .github/
+│   └── workflows/
+│       └── deploy-docs.yml  # GitHub Actions automated Doxygen deployment workflow
+├── docs/                    # Doxygen configuration & generated HTML documentation
+│   ├── Doxyfile             # Doxygen configuration file
+│   └── html/                # Compiled HTML documentation output
+├── index.html               # Main HTML5 application shell
+├── index.css                # Custom CSS3 Glassmorphism styling system
+├── weather-information.js   # Open-Meteo API fetcher & 10-day carousel engine
+├── map-information.js       # Leaflet.js map controller & geocoding handler
+├── speech-tasks.js          # Web Speech Recognition & Synthesis handler
+├── package.json             # NPM package manager configuration & scripts
+├── README.md                # Project documentation & usage guide
 └── LICENSE                  # Open-source project license
 ```
 
@@ -64,44 +66,34 @@ npm install
 - Microphone access (optional, for voice commands).
 - Internet connection (for fetching weather APIs and OpenStreetMap tile layers).
 
-### Client-Side Dependencies (CDNs)
-- **Leaflet.js v1.7.1**: Open-source interactive map library.
-  - CSS: `https://unpkg.com/leaflet@1.7.1/dist/leaflet.css`
-  - JS: `https://unpkg.com/leaflet@1.7.1/dist/leaflet.js`
-- **Google Fonts**: Modern web typography (*Inter* and *Outfit*).
-- **Open-Meteo REST API**: Free, open-source weather API (No API Key required).
-  - Geocoding API: `https://geocoding-api.open-meteo.com/v1/search`
-  - Forecast API: `https://api.open-meteo.com/v1/forecast`
-
 ---
 
-## 📚 4. Automated Doxygen Documentation
+## 📚 4. How to Generate Doxygen Documentation
 
-Documentation for **Weather Assistant** is fully automated using Doxygen with JavaScript extension mapping.
+Documentation for **Weather Assistant** is generated using Doxygen via the `docs/Doxyfile` configuration.
 
-### Generating Documentation via NPM
-Run the following npm command in your terminal to build or refresh Doxygen HTML docs:
+### 1. Build Documentation via Terminal
+Run the following command in your root folder:
 
 ```bash
-# Build Doxygen documentation
+# Generate Doxygen HTML documentation
+doxygen docs/Doxyfile
+```
+
+Or run via NPM script:
+
+```bash
 npm run docs
 ```
 
-This compiles the JSDoc/Doxygen comments in `weather-information.js`, `map-information.js`, and `speech-tasks.js` into `./docs/html/index.html`.
-
-### Viewing Generated Docs Locally
-Open `./docs/html/index.html` in any browser to inspect the interactive API documentation, function call trees, and module references.
+### 2. View Interactive Documentation
+Open `docs/html/index.html` in any web browser to view the generated interactive code API layouts, function call trees, and module references.
 
 ---
 
-## 🔗 5. Project Resources & Live Deployments
-
-- **🌐 Live Web Application (index.html)**: [https://swaraj-sodadasi.github.io/weather-assistant](https://swaraj-sodadasi.github.io/weather-assistant)
-- **📚 Interactive Doxygen Documentation**: [https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html](https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html)
-- **⚙️ CI/CD Deployment Workflow**: [GitHub Actions Workflow Status](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)
-- **Open-Meteo API Reference**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
-- **Leaflet API Reference**: [https://leafletjs.com/reference.html](https://leafletjs.com/reference.html)
-- **Web Speech API (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+## 🛠️ 5. Project Resources
+> * Read the interactive code layouts: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/)**
+> * Monitor the cloud deployment status: **[GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
 
 ---
 
