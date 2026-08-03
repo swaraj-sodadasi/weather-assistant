@@ -99,6 +99,8 @@ Open `./docs/html/index.html` in any browser to inspect the interactive API docu
 - **Open-Meteo API Documentation**: [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
 - **Leaflet API Reference**: [https://leafletjs.com/reference.html](https://leafletjs.com/reference.html)
 - **Web Speech API Documentation (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+- **Read the interactive code layouts**: [Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant)**
+- **Monitor the cloud deployment status**: [GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
 
 
 ## 🔮 6. Future Scope & Roadmap
