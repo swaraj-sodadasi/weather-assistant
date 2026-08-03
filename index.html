@@ -1,61 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Assistant</title>
+    <title>Weather Assistant Dashboard</title>
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script defer src="./index.js"></script>
+    <script defer src="./weather-information.js"></script>
+    <script defer src="./map-information.js"></script>
+    <script defer src="./speech-tasks.js"></script>
 </head>
-<body>
-    <button type="button" id="button_id">Search</button><br>
-    <p id="gen_output"></p>
-    <input type="hidden" placeholder="location" id="generating_text_id" autocomplete="off">
-    <p class="output_id">
-        <p id="location_id_0"><b>Location<b>
-        <p span id="location_id"></p>
-        <p id="latitude_id_0"><b>Latitude<b>
-        <p span id="latitude_id"></p>
-        <p id="longitude_id_0"><b>Longitude<b>
-        <p id="longitude_id"></p>
-        <p id="state_id_0"><b>State<b>
-        <p id="state_id"></p>
-        <p id="country_id_0"><b>Country<b>
-        <p id="country_id"></p>
-        <p id="population_id_0"><b>Population<b>
-        <p id="population_id"></p>
-        <p id="timezone_id_0"><b>TimeZone<b>
-        <p id="timezone_id"></p>
-        <p id="evapotranspiration_id_0"><b>Evapotranspiration<b>
-        <p id="evapotranspiration_id"></p>
-        <p id="precipitation_sum_id_0"><b>Precipitation Sum<b>
-        <p id="precipitation_sum_id"></p>
-        <p id="rain_sum_id_0"><b>Rainfall Sum<b>
-        <p id="rain_sum_id"></p>
-        <p id="snow_sum_id_0"><b>Snowfall Sum<b>
-        <p id="snow_sum_id"></p>
-        <p id="sunrise_id_0"><b>Sunrise<b>
-        <p id="sunrise_id"></p>
-        <p id="sunset_id_0"><b>Sunset<b>
-        <p id="sunset_id"></p>
-        <p id="temperature_id_0"><b>Temperature<b>
-        <p id="temperature_id"></p>
-        <p id="time_id_0"><b>Time<b>
-        <p id="time_id"></p>
-        <p id="uv_index_id_0"><b>UV Index<b>
-        <p id="uv_index_id"></p>
-        <p id="wind_dir_id_0"><b>Wind Direction<b>
-        <p id="wind_dir_id"></p>
-        <p id="wind_gusts_id_0"><b>Wind Gusts<b>
-        <p id="wind_gusts_id"></p>
-        <p id="wind_speed_id_0"><b>Wind Speed<b>
-        <p id="wind_speed_id"></p>
-    </p>
 
-    <div id="map">
-        
-    </div>
+<body>
+    <!-- Top Header & Universal Cross-Browser Search Control -->
+    <header class="header-container">
+        <h1 class="app-title">Weather Assistant</h1>
+        <p class="app-subtitle">Voice-enabled weather intelligence & live mapping dashboard</p>
+
+        <!-- Search Input Bar & Controls -->
+        <div class="search-bar-container">
+            <input type="text" id="search_input" placeholder="Type city name (e.g. London, Tokyo, Hyderabad)..." autocomplete="off">
+            
+            <button type="button" id="search_submit_btn" title="Search Location">
+                🔍 Search
+            </button>
+
+            <button type="button" id="button_id" title="Click to Speak">
+                <svg class="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="22"></line>
+                </svg>
+                Voice
+            </button>
+
+            <button type="button" id="geolocate_btn" title="Use My Current GPS Location">
+                📍 My Location
+            </button>
+        </div>
+
+        <p id="gen_output"></p>
+        <input type="hidden" placeholder="location" id="generating_text_id" autocomplete="off">
+
+        <!-- Supported Voice Commands Guide -->
+        <div class="commands-banner">
+            <span class="commands-title">🎤 Available Commands & Features:</span>
+            <div class="command-chips">
+                <span class="chip">"Hello"</span>
+                <span class="chip">"Show me [City Name]"</span>
+                <span class="chip">"Weather in [City Name]"</span>
+                <span class="chip">Text Input (Firefox/Safari ready)</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- Section 1: Location Metadata -->
+        <section class="dashboard-section">
+            <h2 class="section-title">📍 Location Metadata</h2>
+            <div class="output_id">
+                <div class="weather-card">
+                    <p id="location_id_0"><b>Location</b></p>
+                    <p id="location_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="latitude_id_0"><b>Latitude</b></p>
+                    <p id="latitude_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="longitude_id_0"><b>Longitude</b></p>
+                    <p id="longitude_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="elevation_id_0"><b>Elevation (m)</b></p>
+                    <p id="elevation_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="state_id_0"><b>State / Region</b></p>
+                    <p id="state_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="country_id_0"><b>Country</b></p>
+                    <p id="country_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="population_id_0"><b>Population</b></p>
+                    <p id="population_id"></p>
+                </div>
+                <div class="weather-card">
+                    <p id="timezone_id_0"><b>Time Zone</b></p>
+                    <p id="timezone_id"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Current Conditions Summary -->
+        <section class="dashboard-section">
+            <h2 class="section-title">🌤️ Current Conditions</h2>
+            <div class="output_id">
+                <div class="weather-card">
+                    <p><b>Current Temperature (°C)</b></p>
+                    <p id="curr_temp_id_card">--</p>
+                </div>
+                <div class="weather-card">
+                    <p><b>Apparent Temp (°C)</b></p>
+                    <p id="apparent_temp_id_card">--</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Interactive Forecast Carousels -->
+        <section class="dashboard-section">
+            <h2 class="section-title">📊 Interactive Forecast Carousels</h2>
+
+            <!-- 1. Hourly Forecast Carousel & Table -->
+            <div class="forecast-block">
+                <div class="carousel-header">
+                    <h3 class="sub-section-title">⏱️ Hourly Forecast (24-Hour Timeline)</h3>
+                    <div class="carousel-controls" id="hourly_carousel_controls">
+                        <button type="button" class="carousel-btn" id="hourly_prev_btn">◄ Prev Day</button>
+                        <span class="carousel-indicator" id="hourly_day_indicator">Select a Location</span>
+                        <button type="button" class="carousel-btn" id="hourly_next_btn">Next Day ►</button>
+                    </div>
+                </div>
+                
+                <!-- Quick Day Selector Pills -->
+                <div class="day-pills-container" id="hourly_day_pills"></div>
+
+                <div class="table-responsive">
+                    <table class="weather-table" id="hourly_table">
+                        <thead>
+                            <tr>
+                                <th>Time (12h)</th>
+                                <th>Temp (°C)</th>
+                                <th>Rain (mm)</th>
+                                <th>Snow (cm)</th>
+                                <th>Precip Prob (%)</th>
+                                <th>Humidity (%)</th>
+                                <th>Dew Point (°C)</th>
+                                <th>Evapotranspiration (mm)</th>
+                                <th>Wind Speed (km/h)</th>
+                                <th>Wind Dir (°)</th>
+                                <th>Cloud Cover (%)</th>
+                                <th>Pressure (hPa)</th>
+                                <th>UV Index</th>
+                                <th>Day / Night</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hourly_tbody">
+                            <tr>
+                                <td colspan="14" class="table-empty-msg">Search for a location to view 24-hour timeline.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. Daily Forecast Carousel & Table -->
+            <div class="forecast-block" style="margin-top: 2rem;">
+                <div class="carousel-header">
+                    <h3 class="sub-section-title">📅 Daily Forecast</h3>
+                    <div class="carousel-controls" id="daily_carousel_controls">
+                        <button type="button" class="carousel-btn" id="daily_prev_btn">◄ Prev Day</button>
+                        <span class="carousel-indicator" id="daily_day_indicator">Select a Location</span>
+                        <button type="button" class="carousel-btn" id="daily_next_btn">Next Day ►</button>
+                    </div>
+                </div>
+
+                <!-- Quick Day Selector Pills -->
+                <div class="day-pills-container" id="daily_day_pills"></div>
+
+                <div class="table-responsive">
+                    <table class="weather-table" id="daily_table">
+                        <thead>
+                            <tr>
+                                <th>daily_units (Parameter Name & Unit)</th>
+                                <th>daily (Value for Selected Day)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="daily_tbody">
+                            <tr>
+                                <td colspan="2" class="table-empty-msg">Search for a location to view daily forecast.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Map View -->
+        <section class="dashboard-section">
+            <h2 class="section-title">🗺️ Interactive Location Map</h2>
+            <div id="map"></div>
+        </section>
+    </main>
+
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </body>
+
 </html>
