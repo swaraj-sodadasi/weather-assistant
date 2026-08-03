@@ -3,15 +3,15 @@
 PROJECT_NAME           = "Weather Assistant"
 PROJECT_NUMBER         = "1.0.0"
 PROJECT_BRIEF          = "Voice-enabled weather intelligence & interactive mapping dashboard"
-OUTPUT_DIRECTORY       = "./docs"
+OUTPUT_DIRECTORY       = "."
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 
 # Input source files
-INPUT                  = ./weather-information.js \
-                         ./map-information.js \
-                         ./speech-tasks.js \
-                         ./README.md
+INPUT                  = weather-information.js \
+                         map-information.js \
+                         speech-tasks.js \
+                         README.md
 
 FILE_PATTERNS          = *.js *.md
 RECURSIVE              = NO
@@ -28,7 +28,7 @@ OPTIMIZE_OUTPUT_JAVA   = YES
 
 # HTML output options
 GENERATE_HTML          = YES
-HTML_OUTPUT            = html
+HTML_OUTPUT            = docs/html
 HTML_FILE_EXTENSION    = .html
 HTML_COLORSTYLE        = DARK
 GENERATE_TREEVIEW      = YES
