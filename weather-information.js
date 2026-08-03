@@ -1,20 +1,32 @@
 /**
- * weather-information.js
- * Production-ready weather information module featuring 12-hour clock formatting, 10-day carousels, and coordinate fetching.
+ * @file weather-information.js
+ * @brief Dynamic weather information fetcher using Open-Meteo REST APIs.
+ * @details Handles Open-Meteo geocoding queries, fetches current/daily/hourly metrics,
+ * formats 12-hour timestamps, and manages 10-day forecast carousels.
  */
 
 (function () {
   'use strict';
 
-  // Global state for weather response and carousel indices
+  /**
+   * Global weather response data structure cache.
+   */
   let currentWeatherData = null;
+
+  /**
+   * Currently active day index for the Hourly Forecast Carousel (0-9).
+   */
   let activeHourlyDay = 0;
+
+  /**
+   * Currently active day index for the Daily Forecast Carousel (0-9).
+   */
   let activeDailyDay = 0;
 
   /**
-   * Safely updates DOM element text content.
-   * @param {string} id - DOM element ID.
-   * @param {*} text - Content to insert.
+   * @brief Safely updates DOM element text content.
+   * @param id Target DOM element ID.
+   * @param text Content or metric text to insert.
    */
   function setText(id, text) {
     const el = document.getElementById(id);
@@ -24,9 +36,9 @@
   }
 
   /**
-   * Formats ISO timestamp or HH:MM string into a precise 12-hour clock format (hh:mm AM/PM).
-   * @param {string} isoString - e.g. "2026-07-31T14:00" or "2026-07-31T05:24"
-   * @returns {string} e.g. "02:00 PM"
+   * @brief Formats ISO timestamp or HH:MM string into a 12-hour clock format (hh:mm AM/PM).
+   * @param isoString ISO date time string (e.g., "2026-07-31T14:00").
+   * @returns Formatted 12-hour time string (e.g., "02:00 PM").
    */
   function format12HourTime(isoString) {
     if (!isoString || typeof isoString !== 'string') return '--';
@@ -51,9 +63,9 @@
   }
 
   /**
-   * Formats YYYY-MM-DD string into a friendly date (e.g. "Fri, Jul 31, 2026").
-   * @param {string} dateStr - YYYY-MM-DD
-   * @returns {string}
+   * @brief Formats YYYY-MM-DD string into a human-readable date.
+   * @param dateStr YYYY-MM-DD date string.
+   * @returns Formatted date string (e.g., "Fri, Jul 31, 2026").
    */
   function formatFriendlyDate(dateStr) {
     if (!dateStr) return '--';
@@ -68,8 +80,8 @@
   }
 
   /**
-   * Renders the 24-hour Hourly Forecast Carousel slide for a given day index.
-   * @param {number} dayIdx - Day index (0 to 9).
+   * @brief Renders the 24-hour Hourly Forecast Carousel slide for a given day index.
+   * @param dayIdx Target day index (0 to 9).
    */
   function renderHourlyCarousel(dayIdx) {
     if (!currentWeatherData || !currentWeatherData.hourly || !currentWeatherData.daily) return;
@@ -157,8 +169,8 @@
   }
 
   /**
-   * Renders the Daily Forecast Carousel slide for a given day index.
-   * @param {number} dayIdx - Day index (0 to 9).
+   * @brief Renders the Daily Forecast Carousel slide for a given day index.
+   * @param dayIdx Target day index (0 to 9).
    */
   function renderDailyCarousel(dayIdx) {
     if (!currentWeatherData || !currentWeatherData.daily) return;
@@ -274,7 +286,7 @@
   }
 
   /**
-   * Initializes Carousel Control Buttons for Prev/Next navigation.
+   * @brief Sets up event listeners for Carousel Prev/Next navigation buttons.
    */
   function setupCarouselControls() {
     const hourlyPrev = document.getElementById('hourly_prev_btn');
@@ -306,9 +318,9 @@
   }
 
   /**
-   * Fetches geocoding and weather details for a given location query.
-   * @param {string} locationName - Name of city or location.
-   * @returns {Promise<{name: string, latitude: number, longitude: number}|null>} Coordinates or null.
+   * @brief Fetches geocoding and weather details for a given location query string.
+   * @param locationName Name of city or target location.
+   * @returns Location metadata object or null.
    */
   async function fetchAndDisplayWeather(locationName) {
     if (!locationName || typeof locationName !== 'string' || !locationName.trim()) {
@@ -387,10 +399,10 @@
   }
 
   /**
-   * Fetches weather data directly by coordinates (Latitude & Longitude).
-   * @param {number} latitude
-   * @param {number} longitude
-   * @returns {Promise<{name: string, latitude: number, longitude: number}|null>}
+   * @brief Fetches weather data directly by GPS coordinates (Latitude & Longitude).
+   * @param latitude Target latitude.
+   * @param longitude Target longitude.
+   * @returns Location metadata object or null.
    */
   async function fetchWeatherByCoords(latitude, longitude) {
     try {
@@ -435,12 +447,10 @@
     }
   }
 
-  // Initialize carousel controls on DOM load
   document.addEventListener('DOMContentLoaded', () => {
     setupCarouselControls();
   });
 
-  // Expose functions globally
   window.fetchAndDisplayWeather = fetchAndDisplayWeather;
   window.fetchWeatherByCoords = fetchWeatherByCoords;
 })();
