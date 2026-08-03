@@ -1,0 +1,42 @@
+# Doxygen Configuration File for Weather Assistant Project
+
+PROJECT_NAME           = "Weather Assistant"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "Voice-enabled weather intelligence & interactive mapping dashboard"
+OUTPUT_DIRECTORY       = "./docs"
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+
+# Input source files
+INPUT                  = ./weather-information.js \
+                         ./map-information.js \
+                         ./speech-tasks.js \
+                         ./README.md
+
+FILE_PATTERNS          = *.js *.md
+RECURSIVE              = NO
+EXCLUDE_PATTERNS       = */node_modules/* */.git/*
+
+# Parsing options for JavaScript JSDoc annotations
+EXTENSION_MAPPING      = js=Javascript
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_JAVA   = YES
+
+# HTML output options
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE        = DARK
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = YES
+
+# Other format generators disabled
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
