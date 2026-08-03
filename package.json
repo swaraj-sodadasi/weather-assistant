@@ -1,0 +1,27 @@
+{
+  "name": "weather-assistant",
+  "version": "1.0.0",
+  "description": "A modern, voice-enabled weather intelligence web application built with vanilla JavaScript, HTML5, CSS3 Glassmorphism, Open-Meteo REST APIs, Leaflet.js, and Web Speech APIs.",
+  "main": "weather-information.js",
+  "scripts": {
+    "doc": "doxygen Doxyfile",
+    "docs": "doxygen Doxyfile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swaraj-sodadasi/weather-assistant.git"
+  },
+  "keywords": [
+    "weather",
+    "javascript",
+    "doxygen",
+    "speech-recognition",
+    "leaflet"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "doxygen": "^1.14.0",
+    "jsdoc": "^4.0.4"
+  }
+}
