@@ -68,36 +68,13 @@ npm install
 
 ---
 
-## 📚 4. How to Generate Doxygen Documentation
-
-Documentation for **Weather Assistant** is generated using Doxygen via the `docs/Doxyfile` configuration.
-
-### 1. Build Documentation via Terminal
-Run the following command in your root folder:
-
-```bash
-# Generate Doxygen HTML documentation
-doxygen docs/Doxyfile
-```
-
-Or run via NPM script:
-
-```bash
-npm run docs
-```
-
-### 2. View Interactive Documentation
-Open `docs/html/index.html` in any web browser to view the generated interactive code API layouts, function call trees, and module references.
-
----
-
-## 🛠️ 5. Project Resources
+## 🛠️ 4. Project Resources
 > * Read the interactive code layouts: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/)**
 > * Monitor the cloud deployment status: **[GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
 
 ---
 
-## 🔮 6. Future Scope & Roadmap
+## 🔮 5. Future Scope & Roadmap
 
 1. **PWA & Offline Support**: Implement a Progressive Web App (PWA) Service Worker with local storage caching for offline weather viewing.
 2. **AI Weather Insights**: Integrate LLM natural language summaries (e.g. *"Heavy rain expected at 4 PM, bring an umbrella!"*).
