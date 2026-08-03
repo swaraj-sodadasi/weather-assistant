@@ -42,11 +42,11 @@
    */
   function format12HourTime(isoString) {
     if (!isoString || typeof isoString !== 'string') return '--';
-    
+
     const parts = isoString.split('T');
     const timePart = parts.length > 1 ? parts[1] : parts[0];
     const timeSegments = timePart.split(':');
-    
+
     if (timeSegments.length < 2) return isoString;
 
     let hours = parseInt(timeSegments[0], 10);
@@ -141,8 +141,8 @@
       const uv = hourly.uv_index ? hourly.uv_index[i] : '--';
       const isDay = hourly.is_day ? hourly.is_day[i] : 0;
 
-      const dayNightBadge = isDay === 1 
-        ? `<span class="badge-day">☀️ Day</span>` 
+      const dayNightBadge = isDay === 1
+        ? `<span class="badge-day">☀️ Day</span>`
         : `<span class="badge-night">🌙 Night</span>`;
 
       rowsHtml += `
