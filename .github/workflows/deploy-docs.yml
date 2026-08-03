@@ -1,4 +1,4 @@
-name: Deploy Doxygen Documentation
+name: Deploy Weather Assistant App & Docs
 
 on:
   push:
@@ -31,30 +31,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
-      - name: Generate Doxygen Documentation
+      - name: Build Doxygen Documentation
         run: |
-          mkdir -p docs/html
-          if [ -f "Doxyfile" ]; then
-            doxygen Doxyfile
-          elif [ -f "docs/Doxyfile" ]; then
-            doxygen docs/Doxyfile
-          fi
-          
-          # Verify generated documentation output
-          if [ ! -f "docs/html/index.html" ]; then
-            echo "Warning: index.html was not generated in docs/html, creating fallback index.html..."
-            mkdir -p docs/html
-            cp index.html docs/html/index.html 2>/dev/null || echo "<html><body><h1>Weather Assistant Documentation</h1></body></html>" > docs/html/index.html
-          fi
-          ls -la docs/html
+          doxygen Doxyfile || true
 
       - name: Setup GitHub Pages Environment
         uses: actions/configure-pages@v5
 
-      - name: Upload Generated HTML Artifacts
+      - name: Upload Weather Web App & Doxygen Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs/html'
+          # Serves index.html at root (https://swaraj-sodadasi.github.io/weather-assistant/)
+          path: '.'
 
       - name: Deploy to GitHub Pages Live
         id: deployment
