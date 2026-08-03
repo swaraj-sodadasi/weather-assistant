@@ -1,12 +1,13 @@
 /**
- * speech-tasks.js
- * Production-ready Web Speech Recognition, Speech Synthesis, & Cross-Browser Search Handler.
+ * @file speech-tasks.js
+ * @brief Web Speech Recognition, Speech Synthesis, & Cross-Browser Search Handler.
+ * @details Controls voice input commands, text-to-speech audio feedback, manual text search fallbacks,
+ * and GPS browser geolocation auto-detection.
  */
 
 (function () {
   'use strict';
 
-  // Feature detection for Web Speech API
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const hasRecognitionSupport = Boolean(SpeechRecognition);
   const hasSynthesisSupport = 'speechSynthesis' in window;
@@ -15,14 +16,14 @@
   let isListening = false;
 
   /**
-   * Text-to-Speech synthesis output speaker.
-   * @param {string} text - Message to speak aloud.
+   * @brief Speaks message text aloud using Web SpeechSynthesis API.
+   * @param text Message text to speak aloud.
    */
   function speak(text) {
     if (!hasSynthesisSupport || !text) return;
 
     try {
-      window.speechSynthesis.cancel(); // Reset speech queue
+      window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 1.0;
@@ -36,8 +37,8 @@
   }
 
   /**
-   * Triggers weather and map updates for a given location string.
-   * @param {string} locationQuery - City or location query string.
+   * @brief Triggers weather data fetching and map updating for a given location query string.
+   * @param locationQuery City or target location string.
    */
   async function executeLocationSearch(locationQuery) {
     if (!locationQuery || !locationQuery.trim()) return;
@@ -65,8 +66,8 @@
   }
 
   /**
-   * Parses voice command transcript.
-   * @param {string} rawTranscript - Transcribed speech string.
+   * @brief Parses voice command transcript and routes appropriate actions.
+   * @param rawTranscript Transcribed voice recognition input string.
    */
   function processVoiceCommand(rawTranscript) {
     if (!rawTranscript) return;
@@ -78,14 +79,12 @@
       genOutputEl.textContent = rawTranscript;
     }
 
-    // 1. Greeting Command
     if (transcript.includes('hello') || transcript.includes('hi assistant')) {
       const greetingMsg = "Hello! How can I assist you with weather information today?";
       speak(greetingMsg);
       return;
     }
 
-    // 2. Extract Location Query
     let locationQuery = '';
 
     if (transcript.includes('show me')) {
@@ -111,11 +110,11 @@
   }
 
   /**
-   * Initializes Speech Recognition engine.
+   * @brief Initializes the SpeechRecognition engine with event listeners.
    */
   function initSpeechRecognition() {
     if (!hasRecognitionSupport) {
-      console.warn('[SpeechTasks] Web Speech Recognition is not supported natively in this browser (e.g. Firefox/Safari). Text search fallback enabled.');
+      console.warn('[SpeechTasks] Web Speech Recognition is not supported natively in this browser. Text search fallback enabled.');
       return;
     }
 
@@ -175,7 +174,7 @@
   }
 
   /**
-   * Browser Geolocation API Handler (GPS auto-detection).
+   * @brief Handles browser GPS geolocation auto-detection.
    */
   function handleBrowserGeolocation() {
     const genOutputEl = document.getElementById('gen_output');
@@ -200,7 +199,6 @@
           genOutputEl.textContent = `GPS Location Detected (Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)})...`;
         }
 
-        // Fetch weather directly by latitude and longitude
         if (typeof window.fetchWeatherByCoords === 'function') {
           const result = await window.fetchWeatherByCoords(lat, lon);
           if (result && typeof window.renderMap === 'function') {
@@ -227,9 +225,6 @@
     );
   }
 
-  /**
-   * DOM Initialization & Event Setup.
-   */
   document.addEventListener('DOMContentLoaded', () => {
     initSpeechRecognition();
 
@@ -238,7 +233,6 @@
     const searchSubmitBtn = document.getElementById('search_submit_btn');
     const geolocateBtn = document.getElementById('geolocate_btn');
 
-    // Voice button handler
     if (voiceBtn) {
       voiceBtn.addEventListener('click', () => {
         if (!hasRecognitionSupport) {
@@ -262,7 +256,6 @@
       });
     }
 
-    // Text search button handler
     if (searchSubmitBtn) {
       searchSubmitBtn.addEventListener('click', () => {
         if (searchInput && searchInput.value.trim()) {
@@ -271,7 +264,6 @@
       });
     }
 
-    // Enter key search handler inside input box
     if (searchInput) {
       searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && searchInput.value.trim()) {
@@ -281,13 +273,11 @@
       });
     }
 
-    // Geolocation button handler
     if (geolocateBtn) {
       geolocateBtn.addEventListener('click', handleBrowserGeolocation);
     }
   });
 
-  // Expose function globally
   window.speak = speak;
   window.executeLocationSearch = executeLocationSearch;
 })();
