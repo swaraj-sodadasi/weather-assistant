@@ -100,14 +100,6 @@ Open `./docs/html/index.html` in any browser to inspect the interactive API docu
 - **Leaflet API Reference**: [https://leafletjs.com/reference.html](https://leafletjs.com/reference.html)
 - **Web Speech API Documentation (MDN)**: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 
-### 🚀 GitHub Actions CI/CD Deployment Workflow
-To automate deployment of **Weather Assistant** to **GitHub Pages**, create a `.github/workflows/deploy.yml` file in your repository with the following workflow configuration:
-
-```yaml
-
-```
-
----
 
 ## 🔮 6. Future Scope & Roadmap
 
