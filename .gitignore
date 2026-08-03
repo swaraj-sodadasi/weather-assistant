@@ -21,7 +21,7 @@ ENV/
 .env.production.local
 
 # Generated Documentation (Doxygen / JSDoc outputs)
-docs/
+docs/html
 html/
 latex/
 rtf/
