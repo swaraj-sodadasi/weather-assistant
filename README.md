@@ -69,8 +69,8 @@ npm install
 ---
 
 ## 🛠️ 4. Project Resources
-> * Launch Web Application: **[Live Weather Assistant App](https://swaraj-sodadasi.github.io/weather-assistant/)**
-> * Read the interactive code documentation: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html)**
+> * Launch Web Application: **[Live Weather Assistant App](index.html)**
+> * Read the interactive code documentation: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/)**
 > * Monitor the cloud deployment status: **[GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
 
 ---
