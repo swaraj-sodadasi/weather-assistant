@@ -1,0 +1,22 @@
+{
+  "name": "weather-assistant",
+  "version": "1.0.0",
+  "description": "Voice-enabled weather intelligence web application built with vanilla JavaScript, HTML5, Open-Meteo REST APIs, Leaflet.js, and Web Speech APIs.",
+  "main": "weather-information.js",
+  "scripts": {
+    "docs": "node scripts/build-docs.js"
+  },
+  "keywords": [
+    "weather",
+    "voice-assistant",
+    "doxygen",
+    "open-meteo",
+    "leaflet",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "doxygen": "^0.4.0"
+  }
+}
