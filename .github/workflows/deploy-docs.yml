@@ -1,60 +1,49 @@
-name: Deploy Documentation & App to GitHub Pages
+name: Deploy Doxygen Documentation
 
 on:
   push:
     branches:
-      - main
-      - master
+      - master # Triggers execution instantly whenever you push code changes to the branch
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  pages: write      # Grants permission to safely publish files to GitHub Pages
+  id-token: write   # Required for secure authentication with the hosting server
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository Source
         uses: actions/checkout@v4
 
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install NPM Dependencies
-        run: npm ci
-
-      - name: Install Doxygen
+      - name: Install Doxygen Build Engine
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
-      - name: Generate Doxygen Documentation
-        run: npm run docs:generate
-
-      - name: Prepare Live Deployment Site Directory
+      - name: Run Doxygen Compiler
         run: |
-          mkdir -p _site
-          cp index.html index.css weather-information.js map-information.js speech-tasks.js LICENSE README.md _site/
-          mkdir -p _site/docs
-          cp -r docs/html _site/docs/
+          # Modifies configuration parameters on the fly to force a clean, deterministic output path
+          (cat docs/Doxyfile; echo "OUTPUT_DIRECTORY = ."; echo "HTML_OUTPUT = docs/html") | doxygen -
 
-      - name: Upload Artifact for GitHub Pages
+      - name: Setup GitHub Pages Environment
+        uses: actions/configure-pages@v4
+
+      - name: Upload Generated HTML Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          # Targets the exact, unnested folder path containing your fresh index.html file
+          path: 'docs/html'
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages Live
         id: deployment
         uses: actions/deploy-pages@v4
