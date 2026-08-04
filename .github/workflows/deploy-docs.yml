@@ -1,45 +1,60 @@
-name: Deploy Doxygen Documentation
+name: Deploy Documentation & App to GitHub Pages
 
 on:
   push:
     branches:
-      - master # Triggers execution instantly whenever you push code changes to main/master branch
+      - main
+      - master
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write      # Grants permission to safely publish files to GitHub Pages
-  id-token: write   # Required for secure authentication with the hosting server
+  pages: write
+  id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository Source
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Doxygen Build Engine
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Install Doxygen
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
 
-      - name: Run Doxygen Compiler
+      - name: Generate Doxygen Documentation
+        run: npm run docs:generate
+
+      - name: Prepare Live Deployment Site Directory
         run: |
-          # Compiles Doxygen documentation into docs/html
-          (cat docs/Doxyfile; echo "OUTPUT_DIRECTORY = ."; echo "HTML_OUTPUT = docs/html") | doxygen -
+          mkdir -p _site
+          cp index.html index.css weather-information.js map-information.js speech-tasks.js LICENSE README.md _site/
+          mkdir -p _site/docs
+          cp -r docs/html _site/docs/
 
-      - name: Setup GitHub Pages Environment
-        uses: actions/configure-pages@v4
-
-      - name: Upload Generate HTML Artifacts
+      - name: Upload Artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          # Targets the exact, unnested folder path containing your fresh index.html file
-          path: 'docs/html'
+          path: '_site'
 
-      - name: Deploy to GitHub Pages Live
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
