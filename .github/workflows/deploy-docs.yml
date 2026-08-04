@@ -39,6 +39,9 @@ jobs:
       - name: Build Doxygen Live Documentation
         run: npm run docs
 
+      - name: Disable Jekyll for static documentation
+        run: touch .nojekyll
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
