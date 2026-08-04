@@ -75,10 +75,24 @@ npm run docs
 
 ---
 
-## 🛠️ 4. Project Resources
-> * Launch Web Application: **[Live Weather Assistant App](https://swaraj-sodadasi.github.io/weather-assistant/)** (Serves `./index.html`)
-> * Read the interactive code documentation: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html)** (Generated dynamically by GitHub Actions workflow)
-> * Monitor the cloud deployment status: **[GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
+## 🌐 4. Project resources
+
+### 1. Live documentation
+The project utilizes Doxygen and JSDoc annotations to automatically build and publish live API documentation for all application modules (`weather-information.js`, `map-information.js`, and `speech-tasks.js`).
+
+- **Hosted Live Documentation**: [View Live Doxygen Documentation](https://swaraj-sodadasi.github.io/weather-assistant/docs/)
+- **Local Documentation Build**:
+  To compile Doxygen documentation locally on your machine, execute:
+  ```bash
+  npm run docs
+  ```
+  The compiled output will be generated inside the `./docs/html/` directory.
+
+### 2. Monitoring cloud deployment status
+Continuous integration and continuous deployment (CI/CD) pipelines automatically compile live documentation and deploy the web application to GitHub Pages on every push to the repository.
+
+- **Deployment Status Badge**: [![Deploy Live Documentation & Application](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)
+- **Cloud Deployment Monitoring**: Track active builds, deployment logs, and pipeline health on the [GitHub Actions Dashboard](https://github.com/swaraj-sodadasi/weather-assistant/actions).
 
 ---
 
@@ -88,3 +102,4 @@ npm run docs
 2. **AI Weather Insights**: Integrate LLM natural language summaries (e.g. *"Heavy rain expected at 4 PM, bring an umbrella!"*).
 3. **Severe Weather Push Notifications**: Add Web Push API alerts for UV spikes, sudden wind gusts, or severe storm warnings.
 4. **Multi-Language Voice Support**: Expand voice recognition and speech synthesis across global languages (Spanish, Hindi, French, German, Japanese).
+
