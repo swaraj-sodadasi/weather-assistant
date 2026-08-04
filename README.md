@@ -28,26 +28,30 @@ Traditional web-based weather tools often suffer from key usability and technica
 weather-assistant/
 ├── .github/
 │   └── workflows/
-│       └── deploy-docs.yml  # GitHub Actions automated Doxygen deployment workflow
+│       └── deploy-docs.yml  # GitHub Actions automated Doxygen & web app deployment workflow
 ├── docs/                    # Doxygen configuration & generated HTML documentation
 │   ├── Doxyfile             # Doxygen configuration file
-│   └── html/                # Compiled HTML documentation output
-├── index.html               # Main HTML5 application shell
+│   └── html/                # Compiled HTML documentation output (ignored by git)
+├── scripts/
+│   └── build-docs.js        # Cross-platform Doxygen builder script
+├── index.html               # Main HTML5 application shell (deployed to GitHub Pages root)
 ├── index.css                # Custom CSS3 Glassmorphism styling system
 ├── weather-information.js   # Open-Meteo API fetcher & 10-day carousel engine
 ├── map-information.js       # Leaflet.js map controller & geocoding handler
 ├── speech-tasks.js          # Web Speech Recognition & Synthesis handler
 ├── package.json             # NPM package manager configuration & scripts
+├── package-lock.json        # Deterministic dependency lockfile
 ├── README.md                # Project documentation & usage guide
 └── LICENSE                  # Open-source project license
 ```
 
 ### Module Descriptions
-- **[index.html](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/index.html)**: Defines the structured DOM layout including location metadata cards, current summary cards, 24-hour/10-day forecast carousel tables, search controls, and map container.
+- **[index.html](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/index.html)**: Defines the structured DOM layout including location metadata cards, current summary cards, 24-hour/10-day forecast carousel tables, search controls, and map container. Deployed as the main web application on GitHub Pages.
 - **[index.css](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/index.css)**: Implements CSS Custom Properties, modern typography (Google Fonts *Inter* & *Outfit*), glowing glassmorphic cards, custom table scrollbars, day/night badges, and responsive breakpoint styles.
 - **[weather-information.js](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/weather-information.js)**: Asynchronously queries Open-Meteo REST APIs, formats 12-hour timestamps (`08:00 AM`, `02:00 PM`), and drives carousel state for hourly/daily forecast slides.
 - **[map-information.js](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/map-information.js)**: Controls Leaflet map lifecycle, sets OpenStreetMap tile layers with `crossOrigin` security headers, and updates map markers dynamically.
 - **[speech-tasks.js](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/speech-tasks.js)**: Handles `SpeechRecognition` listening, `SpeechSynthesis` voice responses, text search fallbacks, and browser `navigator.geolocation` GPS tracking.
+- **[scripts/build-docs.js](file:///home/swaraj/Documents/swaraj-works/Education/projects/weather-assistant/scripts/build-docs.js)**: Cross-platform builder script executing Doxygen binary or fallback npm package.
 
 ---
 
@@ -57,8 +61,11 @@ weather-assistant/
 Ensure Node.js and NPM are installed on your environment.
 
 ```bash
-# Install development dependencies
-npm install
+# Install development dependencies using deterministic lockfile
+npm ci
+
+# Generate Doxygen documentation locally
+npm run docs
 ```
 
 ### Hardware & Operating System Requirements
@@ -69,8 +76,8 @@ npm install
 ---
 
 ## 🛠️ 4. Project Resources
-> * Launch Web Application: **[Live Weather Assistant App](index.html)**
-> * Read the interactive code documentation: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/)**
+> * Launch Web Application: **[Live Weather Assistant App](https://swaraj-sodadasi.github.io/weather-assistant/)** (Serves `./index.html`)
+> * Read the interactive code documentation: **[Live Doxygen Documentation Site](https://swaraj-sodadasi.github.io/weather-assistant/docs/html/index.html)** (Generated dynamically by GitHub Actions workflow)
 > * Monitor the cloud deployment status: **[GitHub Actions Workflow](https://github.com/swaraj-sodadasi/weather-assistant/actions/workflows/deploy-docs.yml)**
 
 ---
