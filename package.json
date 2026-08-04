@@ -1,23 +1,23 @@
 {
   "name": "weather-assistant",
   "version": "1.0.0",
-  "description": "A modern, voice-enabled weather intelligence web application built with vanilla JavaScript, HTML5, CSS3 Glassmorphism, Open-Meteo REST APIs, Leaflet.js, and Web Speech APIs.",
-  "main": "weather-information.js",
+  "description": "Voice-enabled weather intelligence & live mapping dashboard with automated Doxygen documentation.",
+  "main": "index.html",
   "scripts": {
-    "doc": "doxygen docs/Doxyfile",
-    "docs": "doxygen docs/Doxyfile"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/swaraj-sodadasi/weather-assistant.git"
+    "docs:generate": "node -e \"const { execSync } = require('child_process'); try { execSync('doxygen docs/Doxyfile', { stdio: 'inherit', env: { ...process.env, PATH: process.env.PATH.split(':').filter(p => !p.includes('node_modules')).join(':') } }); } catch(e) { require('doxygen').run('docs/Doxyfile'); }\"",
+    "build": "npm run docs:generate"
   },
   "keywords": [
     "weather",
-    "javascript",
+    "voice-assistant",
+    "open-meteo",
+    "leaflet",
     "doxygen",
-    "speech-recognition",
-    "leaflet"
+    "github-pages"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "swaraj",
+  "license": "MIT",
+  "devDependencies": {
+    "doxygen": "^0.4.0"
+  }
 }
