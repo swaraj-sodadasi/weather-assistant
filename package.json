@@ -1,0 +1,22 @@
+{
+  "name": "weather-assistant",
+  "version": "1.0.0",
+  "description": "Modern voice-enabled weather intelligence web application built with vanilla JavaScript, Leaflet.js, and Open-Meteo REST APIs.",
+  "main": "weather-information.js",
+  "scripts": {
+    "docs": "node scripts/build-docs.js",
+    "test": "echo \"No test suite specified\" && exit 0"
+  },
+  "keywords": [
+    "weather",
+    "doxygen",
+    "speech-recognition",
+    "leaflet",
+    "open-meteo"
+  ],
+  "author": "Swaraj Sodadasi",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "doxygen": "^0.4.0"
+  }
+}
